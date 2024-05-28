@@ -4,7 +4,29 @@ import mongoose from 'mongoose'
 
 const router = express.Router()
 
-// Create a new Job
+/**
+ * @swagger
+ *  /jobs:
+ *  post:
+ *    summary: Post a new job
+ *    description: Create a new job listing
+ *    tags:
+ *      - Jobs
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/CreateJob'
+ *    responses:
+ *      201:
+ *        description: Job created successfully
+ *      400:
+ *        description: All fields are required
+ *      500:
+ *        description: Internal Server Error
+ */
+
 router.post('/', async (req, res) => {
   try {
     const {
@@ -18,7 +40,6 @@ router.post('/', async (req, res) => {
       contactEmail,
       contactPhone,
     } = req.body
-
     if (
       !title ||
       !jobType ||
@@ -52,6 +73,25 @@ router.post('/', async (req, res) => {
 })
 
 // Get All Jobs
+
+/**
+ * @swagger
+ *  /jobs:
+ *  get:
+ *    summary: Get all jobs
+ *    description: Get all job listings
+ *    tags:
+ *      - Jobs
+ *    content:
+ *      application/json:
+ *        schema:
+ *          $ref: '#/components/schemas/CreateJob'
+ *          type: object
+ *    responses:
+ *      200:
+ *        description: Jobs fetched successfully
+ */
+
 router.get('/', async (req, res) => {
   try {
     const allJobs = await Job.find({})
@@ -66,6 +106,35 @@ router.get('/', async (req, res) => {
 })
 
 // Get a Single Job
+
+/**
+ * @swagger
+ *  /jobs/{jobId}:
+ *  get:
+ *    summary: Get a single job
+ *    description: Get a job listing by its ID
+ *    tags:
+ *      - Jobs
+ *    parameters:
+ *      - in: path
+ *        name: jobId
+ *        schema:
+ *          type: string
+ *        required: true
+ *    content:
+ *      application/json:
+ *        schema:
+ *          $ref: '#/components/schemas/GetSingleJob'
+ *          type: object
+ *    responses:
+ *      200:
+ *        description: Job fetched successfully
+ *      400:
+ *        description: Invalid id format
+ *      500:
+ *        description: Internal Server Error
+ */
+
 router.get('/:jobId', async (req, res) => {
   try {
     const { jobId } = req.params
@@ -83,6 +152,36 @@ router.get('/:jobId', async (req, res) => {
 })
 
 // Update a Job
+
+/**
+ * @swagger
+ *  /jobs/{jobId}:
+ *  put:
+ *    summary: Update a Job listing
+ *    description: Update an existing job listing
+ *    tags:
+ *      - Jobs
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/EditJob'
+ *    parameters:
+ *      - in: path
+ *        name: jobId
+ *        schema:
+ *          type: string
+ *        required: true
+ *    responses:
+ *      200:
+ *        description: Job updated successfully
+ *      400:
+ *        description: All fields are required
+ *      500:
+ *        description: Internal Server Error
+ */
+
 router.put('/:jobId', async (req, res) => {
   try {
     const {
@@ -134,6 +233,35 @@ router.put('/:jobId', async (req, res) => {
 })
 
 // Delete a Job
+
+/**
+ * @swagger
+ *  /jobs/{jobId}:
+ *  delete:
+ *    summary: Delete a single job
+ *    description: Delete a job listing by its ID
+ *    tags:
+ *      - Jobs
+ *    parameters:
+ *      - in: path
+ *        name: jobId
+ *        schema:
+ *          type: string
+ *        required: true
+ *    content:
+ *      application/json:
+ *        schema:
+ *          $ref: '#/components/schemas/GetSingleJob'
+ *          type: object
+ *    responses:
+ *      200:
+ *        description: Job fetched successfully
+ *      400:
+ *        description: Invalid id format
+ *      500:
+ *        description: Internal Server Error
+ */
+
 router.delete('/:jobId', async (req, res) => {
   try {
     const { jobId } = req.params
