@@ -204,21 +204,21 @@ router.put('/:jobId', async (req, res) => {
         .json({ status: 'Error', message: 'Invalid ID format' })
     }
 
-    if (
-      !title ||
-      !jobType ||
-      !description ||
-      !location ||
-      !salaryRange ||
-      !CompanyName ||
-      !companyDesc ||
-      !conatctEmail ||
-      !contactPhone
-    ) {
-      return res
-        .status(400)
-        .json({ status: 'Error', message: 'All fields are required' })
-    }
+    // if (
+    //   !title ||
+    //   !jobType ||
+    //   !description ||
+    //   !location ||
+    //   !salaryRange ||
+    //   !CompanyName ||
+    //   !companyDesc ||
+    //   !conatctEmail ||
+    //   !contactPhone
+    // ) {
+    //   return res
+    //     .status(400)
+    //     .json({ status: 'Error', message: 'All fields are required' })
+    // }
 
     const result = await Job.findByIdAndUpdate(jobId, req.body, { new: true })
 
