@@ -187,6 +187,7 @@ router.put('/:jobId', async (req, res) => {
     const {
       title,
       jobType,
+      description,
       location,
       salaryRange,
       CompanyName,
@@ -206,6 +207,7 @@ router.put('/:jobId', async (req, res) => {
     if (
       !title ||
       !jobType ||
+      !description ||
       !location ||
       !salaryRange ||
       !CompanyName ||
