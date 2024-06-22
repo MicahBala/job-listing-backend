@@ -8,7 +8,14 @@ import swaggerDocs from './utils/swagger.js'
 
 const app = express()
 
-app.use(cors())
+app.use(
+  cors({
+    origin: '*', // Replace '*' with the specific origin(s) you want to allow
+    methods: 'GET, POST, PUT, DELETE', // Specify the allowed HTTP methods
+    allowedHeaders: 'Content-Type, Authorization', // Specify the allowed headers
+  }),
+)
+
 app.use(morgan('tiny'))
 
 app.use(express.json())
