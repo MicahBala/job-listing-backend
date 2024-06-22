@@ -14,7 +14,7 @@ const options = {
     components: {},
     servers: [
       {
-        url: 'https://localhost:4000',
+        url: 'http://localhost:4000',
       },
     ],
     schemes: ['http', 'https'],
