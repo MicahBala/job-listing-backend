@@ -14,7 +14,7 @@ const options = {
     components: {},
     servers: [
       {
-        url: 'http://localhost:4000',
+        url: 'https://localhost:4000',
       },
     ],
     schemes: ['http', 'https'],
@@ -35,7 +35,7 @@ const swaggerDocs = (app, port) => {
   })
 
   console.log(
-    `API Documentation available at http://localhost:${port}/api-docs`,
+    `API Documentation available at https://localhost:${port}/api-docs`,
   )
 }
 
